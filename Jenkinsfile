@@ -14,17 +14,12 @@ pipeline {
             }
         }
 
-//         stage('Push Docker Image') {
-//             steps {
-//                 // Ensure Docker is logged in
-//                 script {
-//                     docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
-//                         // Push image using previously defined image ID
-//                         def app = docker.image("myapp:${env.BUILD_ID}")
-//                         app.push()
-//                     }
-//                 }
-//             }
-//         }
+         stage('Push Docker Image') {
+             steps {
+                 docker.withRegistry("https://762233742154.dkr.ecr.eu-west-1.amazonaws.com/egr-agreement", "ecr:eu-west-1:1780598d-687b-4412-8ad2-6ac37b2dab16") {
+                   docker.image("myapp:${env.BUILD_ID}").push()
+                 }
+             }
+         }
     }
 }
