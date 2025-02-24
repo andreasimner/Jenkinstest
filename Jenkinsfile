@@ -16,8 +16,11 @@ pipeline {
 
          stage('Push Docker Image') {
              steps {
-                 docker.withRegistry("https://762233742154.dkr.ecr.eu-west-1.amazonaws.com/egr-agreement", "ecr:eu-west-1:1780598d-687b-4412-8ad2-6ac37b2dab16") {
-                   docker.image("myapp:${env.BUILD_ID}").push()
+                 // Ensure Docker is logged in
+                 script {
+                     docker.withRegistry("https://762233742154.dkr.ecr.eu-west-1.amazonaws.com/egr-agreement", "ecr:eu-west-1:1780598d-687b-4412-8ad2-6ac37b2dab16") {
+                        docker.image("myapp:${env.BUILD_ID}").push()
+                     }
                  }
              }
          }
