@@ -18,7 +18,7 @@ pipeline {
              steps {
                  // Ensure Docker is logged in
                  script {
-                     docker.withRegistry("https://762233742154.dkr.ecr.eu-west-1.amazonaws.com", "ecr:arne:1780598d-687b-4412-8ad2-6ac37b2dab16") {
+                     docker.withRegistry("https://762233742154.dkr.ecr.eu-west-1.amazonaws.com", "ecr:eu-west-1:1780598d-687b-4412-8ad2-6ac37b2dab16") {
                         docker.image("egr-agreement:${env.BUILD_ID}").push()
                      }
                  }
